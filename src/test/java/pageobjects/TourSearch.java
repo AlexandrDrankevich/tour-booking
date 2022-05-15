@@ -51,7 +51,7 @@ public class TourSearch extends AbstractPage {
 
     private void switchToFrame(WebElement frame) throws InterruptedException {
         driver.switchTo().defaultContent();
-        driver.switchTo().frame(frame).manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
+        driver.switchTo().frame(frame);
         Thread.sleep(1000);
     }
 
