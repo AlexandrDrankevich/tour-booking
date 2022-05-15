@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
+
 public class TourSearch extends AbstractPage {
     protected TourSearch(WebDriver driver) {
         super(driver);
@@ -49,7 +51,7 @@ public class TourSearch extends AbstractPage {
 
     private void switchToFrame(WebElement frame) throws InterruptedException {
         driver.switchTo().defaultContent();
-        driver.switchTo().frame(frame);
+        driver.switchTo().frame(frame).manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
         Thread.sleep(1000);
     }
 
@@ -130,10 +132,10 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch clickButtonSearch() throws InterruptedException {
+    public SearchResultPage clickButtonSearch() throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonSearch.click();
-        return this;
+        Thread.sleep(5000);
+        return new SearchResultPage(driver);
     }
-
 }
