@@ -27,10 +27,21 @@ public class TourSearch extends AbstractPage {
     private WebElement dropDownNightsFrom;
     @FindBy(xpath = "//td[5]//a[contains(@id,'sbToggle')]")
     private WebElement dropDownAdultsNumber;
+    @FindBy(xpath = "//td[2]//a[contains(@id,'sbToggle')]")
+    private WebElement dropDownChildrenNumber;
+    @FindBy(xpath = "//td[4]//a[contains(@id,'sbToggle')]")
+    private WebElement dropDownFirstChildAge;
+    @FindBy(xpath = "//td[6]//a[contains(@id,'sbToggle')]")
+    private WebElement dropDownSecondChildAge;
+    @FindBy(xpath = "//td[1]/div[contains(@class,'date-value')]")
+    private WebElement dropDownDateFlightFrom;
     private String patternPathCityName = "//div[contains(text(),'%s')]";
-    private String patternPathResortName = "//*[@id='resort_4']//span[contains(text(),'%s')]";
-    private String patternNumberValue= "//li[@class='durationf_%s']";
-
+    private String patternPathResortName = "//li[contains(@id,'resort')][@data-text='%s']";
+    private String patternPathNumberNights = "//li[@class='durationf_%s']";
+    private String patternPathNumberAdults = "//li[contains(@class,'adults_%s')]";
+    private String patternPathNumberChildren = "//li[contains(@class,'children_%s')]";
+    private String patternPathChildAge = "//*[contains(@class,'sbOptions')]//a[@title='%s']";
+    private String patternPathDateFlightFrom = "//*[@id='ls-ui-datepicker-div']/div//a[contains(text(),'%s')]";
 
     private void switchToFrame(WebElement frame) {
         driver.switchTo().defaultContent();
@@ -63,18 +74,57 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch chooseNumberOfNights(String value) {
+    public TourSearch chooseNumberOfNights(String value) throws InterruptedException {
+        switchToFrame(frameSearchMenu);
         dropDownNightsFrom.click();
         switchToFrame(frameNumberValueChoose);
+        //Thread.sleep(3000);
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(By.xpath(String.format(patternNumberValue, value)))).click().build().perform();
-return this;
+        action.moveToElement(driver.findElement(By.xpath(String.format(patternPathNumberNights, value)))).click().build().perform();
+        return this;
     }
+
     public TourSearch chooseNumberOfAdults(String value) {
-        dropDownNightsFrom.click();
+        switchToFrame(frameSearchMenu);
+        dropDownAdultsNumber.click();
         switchToFrame(frameNumberValueChoose);
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(By.xpath(String.format(patternNumberValue, value)))).click().build().perform();
+        action.moveToElement(driver.findElement(By.xpath(String.format(patternPathNumberAdults, value)))).click().build().perform();
+        return this;
+    }
+
+    public TourSearch chooseNumberOfChidren(String value) {
+        switchToFrame(frameSearchMenu);
+        dropDownChildrenNumber.click();
+        switchToFrame(frameNumberValueChoose);
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(By.xpath(String.format(patternPathNumberChildren, value)))).click().build().perform();
+        return this;
+    }
+
+    public TourSearch chooseFirstChildAge(String value) {
+        switchToFrame(frameSearchMenu);
+        dropDownFirstChildAge.click();
+        switchToFrame(frameNumberValueChoose);
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(By.xpath(String.format(patternPathChildAge, value)))).click().build().perform();
+        return this;
+    }
+
+    public TourSearch chooseSecondChildAge(String value) {
+        switchToFrame(frameSearchMenu);
+        dropDownSecondChildAge.click();
+        switchToFrame(frameNumberValueChoose);
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(By.xpath(String.format(patternPathChildAge, value)))).click().build().perform();
+        return this;
+    }
+
+    public TourSearch chooseDateFlight(String value) {
+        switchToFrame(frameSearchMenu);
+        dropDownDateFlightFrom.click();
+        switchToFrame(frameCityChoose);
+        driver.findElement(By.xpath(String.format(patternPathDateFlightFrom, value))).click();
         return this;
     }
 

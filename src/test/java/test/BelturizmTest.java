@@ -12,6 +12,9 @@ public class BelturizmTest extends AbstractTest {
         String resortName = "Хургада";
         String numberOfNights = "11";
         String numberOfAdults = "2";
+        String numberOfChildren = "2";
+        String childAge = "3";
+        String dateFlight= "24";
 
 
         new HomePage(driver).openPage()
@@ -20,8 +23,13 @@ public class BelturizmTest extends AbstractTest {
                 .chooseCityTourTo(cityTourTo)
                 .chooseResort(resortName)
                 .chooseNumberOfNights(numberOfNights)
-               .chooseNumberOfAdults(numberOfAdults);
-        Thread.sleep(3000);
+               .chooseNumberOfAdults(numberOfAdults)
+                .chooseNumberOfChidren(numberOfChildren)
+                .chooseFirstChildAge(childAge)
+        .chooseSecondChildAge(childAge).chooseDateFlight(dateFlight);
+
+
+        Thread.sleep(5000);
 
     }
 }
