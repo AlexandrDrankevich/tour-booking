@@ -39,8 +39,6 @@ public class TourSearch extends AbstractPage {
     private WebElement buttonDropDownDateFlightFrom;
     @FindBy(xpath = "//a[contains(@class,'search-form-btn')]")
     private WebElement buttonSearch;
-    @FindBy(xpath = "//body/div/ul[contains(@id,'sbOptions')]")
-    private WebElement dropdownMenuNumberNights;
     private String patternPathCityName = "//div[contains(text(),'%s')]";
     private String patternPathResortName = "//li[contains(@id,'resort')]//span[contains(text(),'%s')]";
     private String patternPathNumberOfNights = "//body/div/ul/li[@class='durationf_%s']";
