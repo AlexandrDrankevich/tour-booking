@@ -6,10 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class TourSearch extends AbstractPage {
     protected TourSearch(WebDriver driver) {
@@ -51,13 +47,13 @@ public class TourSearch extends AbstractPage {
     private String patternPathChildAge = "//*[contains(@class,'sbOptions')]//a[@title='%s']";
     private String patternPathDateFlightFrom = "//*[@id='ls-ui-datepicker-div']/div//a[contains(text(),'%s')]";
 
-    private void switchToFrame(WebElement frame) {
+    private void switchToFrame(WebElement frame) throws InterruptedException {
         driver.switchTo().defaultContent();
-        driver.switchTo().frame(frame).manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
-
+        driver.switchTo().frame(frame);
+        Thread.sleep(1000);
     }
 
-    public TourSearch chooseCityTourFrom(String cityTourFrom) {
+    public TourSearch chooseCityTourFrom(String cityTourFrom) throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonDropDownCityFrom.click();
         switchToFrame(frameCityChoose);
@@ -67,8 +63,8 @@ public class TourSearch extends AbstractPage {
 
     public TourSearch chooseCityTourTo(String cityTourTo) throws InterruptedException {
         switchToFrame(frameSearchMenu);
-        Thread.sleep(1000);
         buttonDropDownCityTo.click();
+        Thread.sleep(1000);
         switchToFrame(frameCityChoose);
         waitForElementToBeClickable(driver.findElement(By.xpath(String.format(patternPathCityName, cityTourTo)))).click();
         return this;
@@ -76,7 +72,6 @@ public class TourSearch extends AbstractPage {
 
     public TourSearch chooseResort(String resortName) throws InterruptedException {
         switchToFrame(frameSearchMenu);
-        Thread.sleep(1000);
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(String.format(patternPathResortName, resortName)))).click().build().perform();
         return this;
@@ -84,16 +79,14 @@ public class TourSearch extends AbstractPage {
 
     public TourSearch chooseNumberOfNights(String value) throws InterruptedException {
         switchToFrame(frameSearchMenu);
-        Thread.sleep(1000);
         buttonDropDownNightsFrom.click();
         switchToFrame(frameNumberValueChoose);
-        Thread.sleep(1000);
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(By.xpath(String.format(patternPathNumberOfNights, value)))).click().build().perform();
         return this;
     }
 
-    public TourSearch chooseNumberOfAdults(String value) {
+    public TourSearch chooseNumberOfAdults(String value) throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonDropDownAdultsNumber.click();
         switchToFrame(frameNumberValueChoose);
@@ -102,7 +95,7 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch chooseNumberOfChidren(String value) {
+    public TourSearch chooseNumberOfChildren(String value) throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonDropDownChildrenNumber.click();
         switchToFrame(frameNumberValueChoose);
@@ -111,7 +104,7 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch chooseFirstChildAge(String value) {
+    public TourSearch chooseFirstChildAge(String value) throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonDropDownFirstChildAge.click();
         switchToFrame(frameNumberValueChoose);
@@ -120,7 +113,7 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch chooseSecondChildAge(String value) {
+    public TourSearch chooseSecondChildAge(String value) throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonDropDownSecondChildAge.click();
         switchToFrame(frameNumberValueChoose);
@@ -129,7 +122,7 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch chooseDateFlight(String value) {
+    public TourSearch chooseDateFlight(String value) throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonDropDownDateFlightFrom.click();
         switchToFrame(frameCityChoose);
@@ -137,7 +130,7 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public TourSearch clickButtonSearch() {
+    public TourSearch clickButtonSearch() throws InterruptedException {
         switchToFrame(frameSearchMenu);
         buttonSearch.click();
         return this;

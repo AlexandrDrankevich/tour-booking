@@ -24,12 +24,12 @@ public class BelturizmTest extends AbstractTest {
                 .chooseResort(resortName)
                 .chooseNumberOfNights(numberOfNights)
                .chooseNumberOfAdults(numberOfAdults)
-                .chooseNumberOfChidren(numberOfChildren)
+                .chooseNumberOfChildren(numberOfChildren)
                 .chooseFirstChildAge(childAge)
         .chooseSecondChildAge(childAge).chooseDateFlight(dateFlight).clickButtonSearch();
 
 
-        Thread.sleep(10000);
+        Thread.sleep(20000);
 
     }
 }
