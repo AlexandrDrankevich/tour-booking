@@ -7,7 +7,7 @@ import pageobjects.SearchResultPage;
 
 public class BelturizmTest extends AbstractTest {
     @Test
-    public void testTourSearch() throws InterruptedException {
+    public void testTourSearch() {
         String tourType = "Авиатуры";
         String cityTourFrom = "Минск";
         String cityTourTo = "Египет";

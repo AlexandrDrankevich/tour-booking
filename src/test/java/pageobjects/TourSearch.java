@@ -131,10 +131,14 @@ public class TourSearch extends AbstractPage {
         return this;
     }
 
-    public SearchResultPage clickButtonSearch() throws InterruptedException {
+    public SearchResultPage clickButtonSearch() {
         switchToFrame(frameSearchMenu);
         buttonSearch.click();
-        Thread.sleep(5000);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            logger.warn(e.getMessage());
+        }
         return new SearchResultPage(driver);
     }
 }
