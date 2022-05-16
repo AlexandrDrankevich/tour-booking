@@ -18,7 +18,6 @@ public class BelturizmTest extends AbstractTest {
         String childAge = "3";
         String dateFlight = "24";
 
-
         SearchResultPage searchResultPage = new HomePage(driver).openPage()
                 .navigateToTourSearch(tourType)
                 .chooseCityTourFrom(cityTourFrom)
@@ -33,6 +32,5 @@ public class BelturizmTest extends AbstractTest {
                 .clickButtonSearch();
         Assert.assertTrue(searchResultPage.isResultsSearchContainsResort(resortName));
         Assert.assertTrue(searchResultPage.isAllResultsSearchContainsResort(resortName));
-
     }
 }

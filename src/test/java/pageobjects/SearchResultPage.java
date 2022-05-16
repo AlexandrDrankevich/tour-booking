@@ -23,7 +23,6 @@ public class SearchResultPage extends AbstractPage {
     private WebElement frameResult;
     private String searchResultPath = "//div[@class='search-results-place-wrap']/a";
 
-
     public void getListResorts() {
         driver.switchTo().defaultContent().switchTo().frame(frameResult);
         List<WebElement> elements = driver.findElements(By.xpath(searchResultPath));
