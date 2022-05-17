@@ -1,6 +1,5 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,11 +20,11 @@ public class SearchResultPage extends AbstractPage {
 
     @FindBy(xpath = "//iframe[@id='tcjsfr_7bcf672ed6f2f653cc2abf8929877414']")
     private WebElement frameResult;
-    private String searchResultPath = "//div[@class='search-results-place-wrap']/a";
+    private String searchResultLocator = "//div[@class='search-results-place-wrap']/a";
 
     public void getListResorts() {
         driver.switchTo().defaultContent().switchTo().frame(frameResult);
-        List<WebElement> elements = driver.findElements(By.xpath(searchResultPath));
+        List<WebElement> elements = waitForPresenceOfAllElementsLocatedBy(searchResultLocator);
         listResorts = elements.stream().map(s -> s.getText()).collect(Collectors.toList());
         logger.info(listResorts);
     }
